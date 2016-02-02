@@ -14,8 +14,8 @@ gulp.task('default', function(){
     });
 
     gulp.watch('assets/js/libs/*.js', ['js_libs']);
-    gulp.watch('assets/js/app/*.js', ['js_app']);
-    gulp.watch('assets/sass/*.scss', ['sass']);
+    gulp.watch('assets/js/app/**/*.js', ['js_app']);
+    gulp.watch('assets/sass/**/*.scss', ['sass']);
 });
 
 gulp.task('js_libs', function(){
@@ -25,14 +25,14 @@ gulp.task('js_libs', function(){
 });
 
 gulp.task('js_app', function(){
-    return gulp.src('assets/js/app/*.js')
+    return gulp.src('assets/js/app/**/*.js')
         .pipe(concat('app.js'))
         .pipe(gulp.dest('assets/js/dist'))
 });
 
 // Compile Sass into CSS & auto-inject into browsers
 gulp.task('sass', function() {
-    return gulp.src('assets/sass/*.scss')
+    return gulp.src('assets/sass/**/*.scss')
         .pipe(sass({outputStyle: 'nested'}).on('error', sass.logError))
         .pipe(autoprefixer({
             browsers: ['last 2 versions']
